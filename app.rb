@@ -2,13 +2,20 @@ require 'sinatra/base'
 
 class Rps < Sinatra::Application
   get '/' do 
-    'Testing infrastructure working!'
+    erb(:index)
+  end
+
+  post '/name' do
+    $name = params[:player_name]
+    redirect '/play'
+  end
+
+  get '/play' do
+    erb(:play)
   end
 
   run! if app_file == $0
 end
-
-
 
 # As a marketeer
 # So that I can see my name in lights
