@@ -6,12 +6,23 @@ class Rps < Sinatra::Application
   end
 
   post '/name' do
+    # TODO: Remove Global Variables
     $name = params[:player_name]
     redirect '/play'
   end
 
   get '/play' do
     erb(:play)
+  end
+
+  post '/choice' do
+    $choice = params[:choice]
+    redirect '/confirmation'
+  end
+
+  get '/confirmation' do
+    # TODO: Add opponent return and declare winner
+    erb(:confirmation)
   end
 
   run! if app_file == $0

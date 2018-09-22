@@ -1,1 +1,16 @@
-<h1>Welcome <%= $name%>, what is your move?</h1>
+<div>
+  <h1>Welcome <%= $name%>, what is your move?</h1>
+</div>
+
+<div>
+  <form action='/choice' method='post'>
+  <div>
+    <input type='radio' name='choice' id='Rock' value='Rock'> Rock <br>
+    <input type='radio' name='choice' id='Paper' value='Paper'> Paper <br>
+    <input type='radio' name='choice' id='Scissors' value='Scissors'> Scissors <br>
+  </div>
+  <div>
+    <button type='submit' value='Submit'>Submit</button>
+  </div>
+  </form>
+</div>
