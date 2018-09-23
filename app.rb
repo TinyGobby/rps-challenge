@@ -1,13 +1,18 @@
 require 'sinatra/base'
+require_relative "./lib/player.rb"
 
 class Rps < Sinatra::Application
+
+  before do
+    @player = Player.instance
+  end
+  
   get '/' do 
     erb(:index)
   end
 
   post '/name' do
-    # TODO: Remove Global Variables
-    $name = params[:player_name]
+    @player = Player.create(params[:player_name])
     redirect '/play'
   end
 
@@ -16,7 +21,7 @@ class Rps < Sinatra::Application
   end
 
   post '/choice' do
-    $choice = params[:choice]
+    @player.choice = params[:choice]
     redirect '/confirmation'
   end
 
@@ -30,14 +35,14 @@ end
 
 # As a marketeer
 # So that I can see my name in lights
-# I would like to register my name before playing an online game
+# I would like to register my name before playing an online player
 
 # As a marketeer
 # So that I can enjoy myself away from the daily grind
 # I would like to be able to play rock/paper/scissors
 
-# the marketeer should be able to enter their name before the game
+# the marketeer should be able to enter their name before the player
 # the marketeer will be presented the choices (rock, paper and scissors)
 # the marketeer can choose one option
-# the game will choose a random option  
+# the player will choose a random option  
 # a winner will be declared
