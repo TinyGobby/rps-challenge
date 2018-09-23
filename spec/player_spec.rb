@@ -1,5 +1,5 @@
 describe Player do
-  let(:player) { Player.create('Patrick') }
+  let(:player) { Player.new('Patrick') }
 
   describe '#name' do
     it 'returns choice that it is initialized with' do

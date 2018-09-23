@@ -1,10 +1,10 @@
 require 'sinatra/base'
-require_relative "./lib/player.rb"
+require_relative "./lib/game.rb"
 
 class Rps < Sinatra::Application
 
   before do
-    @player = Player.instance
+    @game = Game.instance
   end
   
   get '/' do 
@@ -12,7 +12,7 @@ class Rps < Sinatra::Application
   end
 
   post '/name' do
-    @player = Player.create(params[:player_name])
+    @game.create_player(params[:player_name])
     redirect '/play'
   end
 
@@ -21,12 +21,11 @@ class Rps < Sinatra::Application
   end
 
   post '/choice' do
-    @player.choice = params[:choice]
+    @game.player.choice = params[:choice]
     redirect '/confirmation'
   end
 
   get '/confirmation' do
-    # TODO: Add opponent return and declare winner
     erb(:confirmation)
   end
 
